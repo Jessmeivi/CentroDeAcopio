@@ -120,32 +120,34 @@
             $id=$_POST['id'];
              echo "<hr style='border-color: red'>";
                 echo "<br>";
-                $sql ="SELECT nom_cliente,ape_pat,ape_mat FROM cliente where id_cliente=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
+                $sql ="SELECT nom,ape_pat,ape_mat,salario FROM empleado where id_empleado=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
                 if($result->num_rows > 0)
                 {
-                    echo "seguro que desea eliminar este cliente ?";
+                    echo "actualizar empleado";
+                    echo "<form name='elim' action='http://localhost/conexion/actu_empleado.php' method='POST'>" ;
                     echo "<table>";
                     while($row = $result->fetch_assoc())
                     {
-                       
-                        echo "<tr> <td>  <b>nombre</b>: ".$row["nom_cliente"]."
-                        <b>apellido paterno: </b>". $row["ape_pat"].
-                        "<b>apellido: $</b>". $row["ape_mat"].
-                        "</td> </tr>";
+                echo"nombre: <input type='text' name='nombre' value='".$row["nom"]."'><br>";
+                
+                echo"apellido paterno: <input type='text' name='ape_pat' value='".$row["ape_pat"]."'><br>";
+                
+                echo"apellido materno: <input type='text' name='ape_mat' value='".$row["ape_mat"]."'><br>";
+                
+               echo "salario: <input type='number' name='salario' value='".$row["salario"]."'><br>";
+     
+         
+              echo"  <tr>";
+                echo"<td>";
+                      
+                   echo" <input type='hidden' name='enviar2' value='$id'>";
+                   echo" <input type='submit' name='enviar' value='aceptar'>";
+               echo"</td>";
+            echo"</tr>";
                     }
                             echo "</table>";
-                            echo "<form name='elim' action='http://localhost/conexion/elim_cliente.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
-                            
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <input type='hidden' name='enviar2' value='$id'>
-                                            <input type='submit' name='enviar' value='aceptar'>
-                                        </td>
-                                    </tr>
-                                </table>
-                        </form> ";
+                        echo "</form> ";
                         }else{
                             echo"pusss no hay nadieeee";
                         }    
@@ -158,14 +160,14 @@
     <table class="center">
         <tr>
             <td align="center">
-                <h1>Eliminar cliente por id </h1> <!--Formulario para crear al nuevo usuario--> 
+                <h1>Actualizar empleado por id </h1> <!--Formulario para crear al nuevo usuario--> 
             </td>
         </tr>
         <tr>
             <td align="center">
-                <form name="Registro" action="http://localhost/conexion/cliente_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                <form name="Registro" action="http://localhost/conexion/actualizar_recicladora.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
                 <div class="input-container">
-                <input type="numeric" name="id"><label>ID</label><br>
+                    <input type="numeric" name="id"><br><label>ID_empleado</label><br>
                 </div>
                 <table>
                     <tr>
@@ -184,10 +186,6 @@
                     <?php
         }
     ?>
-    <!-- Bootstrap files -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 
 </body>
 </html>
