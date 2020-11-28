@@ -178,6 +178,44 @@
         </form> 
             </td>
         </tr>
+        <tr>
+            <td align="center">
+                <h1>Recicladoras</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php
+                    include('database.php');
+                    $conexion=conectar();
+                    if(!$conexion)
+                    {
+                        die("error de conexion");
+                    }
+                    echo "<hr style='border-color: red'>";
+                    echo "<br>";
+                
+                    $sql ="SELECT * FROM recicladora_view"; //imprimimos todo de vista recicladora 
+                    $result = $conexion->query($sql);
+                    if($result->num_rows > 0)
+                    {
+                        echo "<table>
+                        <tr>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        </tr>";
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo "<tr>";
+                            echo "<td>" . $row['nombre'] . "</td>";
+                            echo "<td>" . $row['dirreccion recicladora'] . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                    }
+                ?>
+            </td>
+        </tr>
     </table>
                     <?php
         }

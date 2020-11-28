@@ -168,6 +168,44 @@
         </form> 
             </td>
         </tr>
+        <tr>
+            <td align="center">
+                <h1>Empleados</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <?php
+                    include('database.php');
+                    $conexion=conectar();
+                    if(!$conexion)
+                    {
+                        die("error de conexion");
+                    }
+                    echo "<hr style='border-color: red'>";
+                    echo "<br>";
+                
+                    $sql ="SELECT * FROM empleado_por_nombre"; //imprimimos todo de vista recicladora 
+                    $result = $conexion->query($sql);
+                    if($result->num_rows > 0)
+                    {
+                        echo "<table>
+                        <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        </tr>";
+                        while($row = $result->fetch_assoc())
+                        {
+                            echo "<tr>";
+                            echo "<td>" . $row['id_empleado'] . "</td>";
+                            echo "<td>" . $row['nombre'] . "</td>";
+                            echo "</tr>";
+                        }
+                        echo "</table>";
+                    }
+                ?>
+            </td>
+        </tr>
     </table>
                     <?php
         }
