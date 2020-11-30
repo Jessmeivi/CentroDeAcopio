@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recicladora AGS</title>
+    <!-- Agregamos nuestro ícono -->
+    <link rel = "icon" href = "img/imgLogo.png" type = "image/x-icon">
 
     <link rel="stylesheet" href="css/login.css">
 </head>
@@ -20,7 +22,9 @@
                 <label>Contraseña</label>
             </div>
             <button type="submit" class="btn">submit</button>
-        </form>	
+            <input type="button" value="Regresar" class="btn" onclick="location='index.php'"/>
+        </form>
+        
     </div>
 </body>
 </html>

@@ -4,7 +4,7 @@
         $servername = "localhost";
         $database = "ca";
         $username = "root";
-        $password = "Alex4444"; //contraseña de cada quien
+        $password = ""; //contraseña de cada quien
 
         //Crear la conexion
         /*

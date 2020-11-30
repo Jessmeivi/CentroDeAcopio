@@ -17,7 +17,7 @@
     }else{
 ?>
 <?php
-    header('Location: index.php');
+    header('Location: login.php');
 ?>
 <?php
     }
