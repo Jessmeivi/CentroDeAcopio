@@ -1,8 +1,7 @@
 <?php
     include('database.php');
     $conexion=conectar();
-    if(!$conexion)
-    {
+    if(!$conexion){
         die("error de conexion");
     }
     echo "<hr style='border-color: red'>";
@@ -22,5 +21,5 @@
     calle='$calle',numero=$num,telefono=$telefono
     where id_cliente=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
     $result = $conexion->query($sql);
-    
+    header('Location: cliente_actualizar.php');
 ?>

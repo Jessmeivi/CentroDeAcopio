@@ -115,8 +115,7 @@
 <?php
     include('database.php');
     $conexion=conectar();
-    if(!$conexion)
-    {
+    if(!$conexion){
         die("error de conexion");
     }
     echo "<hr style='border-color: red'>";
@@ -124,19 +123,16 @@
    
     $sql ="SELECT tipo_prod,descrip_prod,precio FROM producto"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
     $result = $conexion->query($sql);
-    if($result->num_rows > 0)
-    {
+    if($result->num_rows > 0){
         echo "<table>";
-        while($row = $result->fetch_assoc())
-        {
-           
+        while($row = $result->fetch_assoc()){
             echo "<tr> <td>  <b>Tipo</b>: ".$row["tipo_prod"]."
             <b>Descripcion: </b>". $row["descrip_prod"].
             "<b> se paga a: $</b>". $row["precio"].
             "</td> </tr>";
         }
-                echo "</table>";
-            }
+        echo "</table>";
+    }
 ?>
     <!-- Bootstrap files -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

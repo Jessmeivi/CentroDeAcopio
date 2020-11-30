@@ -1,8 +1,7 @@
 <?php
     include('database.php');
     $conexion=conectar();
-    if(!$conexion)
-    {
+    if(!$conexion){
         die("error de conexion");
     }
     echo "<hr style='border-color: red'>";

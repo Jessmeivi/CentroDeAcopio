@@ -114,113 +114,105 @@
             
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            
+            if(!$conexion){
                 die("error de conexion");
-            }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            }else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
                 $sql ="SELECT nombre FROM recicladora where id_recicladora=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {
+
+                if($result->num_rows > 0){
                     echo "seguro que desea eliminar esta recicladora ?";
                     echo "<table>";
-                    while($row = $result->fetch_assoc())
-                    {
-                       
+
+                    while($row = $result->fetch_assoc()){
                         echo "<tr> <td><b>nombre</b>: ".$row["nombre"]."
                         </td> </tr>";
                     }
-                            echo "</table>";
-                            echo "<form name='elim' action='http://localhost/conexion/elim_reci.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
-                           
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <input type='hidden' name='enviar2' value='$id'>
-                                            <input type='submit' name='enviar' value='aceptar'>
-                                        </td>
-                                    </tr>
-                                </table>
+                    echo "</table>";
+                    echo "<form name='elim' action='http://localhost/conexion/elim_reci.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type='hidden' name='enviar2' value='$id'>
+                                        <input type='submit' name='enviar' value='aceptar'>
+                                    </td>
+                                </tr>
+                            </table>
                         </form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a href='http://localhost/conexion/productos.php'>cancelar</a>";
-              }
-        }
-        else
-        {
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a href='http://localhost/conexion/inicio_emp.php'>cancelar</a>";
+            }
+        }else{
     ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Eliminar recicladora por ID</h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/recicladora_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                    <div class="input-container">
-                    <input type="numeric" name="id"><label>ID</label><br>
-                    </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <h1>Recicladoras</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <?php
-                    include('database.php');
-                    $conexion=conectar();
-                    if(!$conexion)
-                    {
-                        die("error de conexion");
-                    }
-                    echo "<hr style='border-color: red'>";
-                    echo "<br>";
-                
-                    $sql ="SELECT * FROM recicladora_view"; //imprimimos todo de vista recicladora 
-                    $result = $conexion->query($sql);
-                    if($result->num_rows > 0)
-                    {
-                        echo "<table>
-                        <tr>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        </tr>";
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo "<tr>";
-                            echo "<td>" . $row['nombre'] . "</td>";
-                            echo "<td>" . $row['dirreccion recicladora'] . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
-                ?>
-            </td>
-        </tr>
-    </table>
-                    <?php
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Eliminar recicladora por ID</h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/recicladora_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                            <input type="numeric" name="id"><label>ID</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h1>Recicladoras</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php
+                            include('database.php');
+                            $conexion=conectar();
+                            if(!$conexion){
+                                die("error de conexion");
+                            }
+                            echo "<hr style='border-color: red'>";
+                            echo "<br>";
+                        
+                            $sql ="SELECT * FROM recicladora_view"; //imprimimos todo de vista recicladora 
+                            $result = $conexion->query($sql);
+
+                            if($result->num_rows > 0){
+                                echo "<table>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                </tr>";
+                                while($row = $result->fetch_assoc()){
+                                    echo "<tr>";
+                                    echo "<td>" . $row['nombre'] . "</td>";
+                                    echo "<td>" . $row['dirreccion recicladora'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                            }
+                        ?>
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
     <!-- Bootstrap files -->

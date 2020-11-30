@@ -108,127 +108,117 @@
     <?php
         if($_POST)//Recibe los datos del formulario de abajo
         {
-            
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
             }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
                 $sql ="SELECT nom_cliente,ape_pat,ape_mat,estado,colonia,calle,numero,telefono FROM cliente where id_cliente=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {
+                if($result->num_rows > 0){
                     echo "<center><div style='width:50%'>";
                     echo "<center><div><h1 style='color:  #FFFFFF; '>ACTUALIZAR CLIENTE</h1></div></center>";
                     echo "<form name='elim' action='http://localhost/conexion/actu_cliente.php' method='POST'>" ;
                     echo "<table>";
-                    while($row = $result->fetch_assoc())
-                    {
-                        
-                echo"<div class='input-container' > <input type='text'  style='color:#FFFFFF' name='nombre' value='".$row["nom_cliente"]."'> <label style='color: #FFFFFF; '>Nombre: </label> </div><br>";
+                    while($row = $result->fetch_assoc()){
+                        echo"<div class='input-container' > <input type='text'  style='color:#FFFFFF' name='nombre' value='".$row["nom_cliente"]."'> <label style='color: #FFFFFF; '>Nombre: </label> </div><br>";
                 
-                echo"<div class='input-container'><input type='text'  style='color:#FFFFFF' name='ape_pat' value='".$row["ape_pat"]."'><label style='color: #FFFFFF; '>Apellido Paterno: </label> </div><br>";
+                        echo"<div class='input-container'><input type='text'  style='color:#FFFFFF' name='ape_pat' value='".$row["ape_pat"]."'><label style='color: #FFFFFF; '>Apellido Paterno: </label> </div><br>";
                 
-                echo"<div class='input-container'><input type='text'  style='color:#FFFFFF' name='ape_mat' value='".$row["ape_mat"]."'><label style='color: #FFFFFF; '>Apellido Materno: </label> </div><br>";
+                        echo"<div class='input-container'><input type='text'  style='color:#FFFFFF' name='ape_mat' value='".$row["ape_mat"]."'><label style='color: #FFFFFF; '>Apellido Materno: </label> </div><br>";
                 
-               echo "<div class='input-container'><input type='text'  style='color:#FFFFFF' name='estado' value='".$row["estado"]."'><label style='color: #FFFFFF; '>Estado: </label> </div><br>";
-               echo "<div class='input-container'><input type='text' style='color:#FFFFFF' name='colonia' value='".$row["colonia"]."'><label style='color: #FFFFFF; '>Colonia: </label> </div><br>";
+                        echo "<div class='input-container'><input type='text'  style='color:#FFFFFF' name='estado' value='".$row["estado"]."'><label style='color: #FFFFFF; '>Estado: </label> </div><br>";
+                        echo "<div class='input-container'><input type='text' style='color:#FFFFFF' name='colonia' value='".$row["colonia"]."'><label style='color: #FFFFFF; '>Colonia: </label> </div><br>";
                  
-                echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='calle' value='".$row["calle"]."'><label style='color: #FFFFFF; '>Calle: </label> </div><br>";
+                        echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='calle' value='".$row["calle"]."'><label style='color: #FFFFFF; '>Calle: </label> </div><br>";
                  
-                echo"<div class='input-container'><input type='number' style='color:#FFFFFF' name='numero' value='".$row["numero"]."'><label style='color: #FFFFFF; '># Casa: </label> </div><br>";
+                        echo"<div class='input-container'><input type='number' style='color:#FFFFFF' name='numero' value='".$row["numero"]."'><label style='color: #FFFFFF; '># Casa: </label> </div><br>";
 
-                echo"<div class='input-container'><input type='number' style='color:#FFFFFF' name='telefono' value='".$row["telefono"]."'><label style='color: #FFFFFF; '>Teléfono</label> </div><br>";
-              echo"  <tr>";
-                echo"<td>";
+                        echo"<div class='input-container'><input type='number' style='color:#FFFFFF' name='telefono' value='".$row["telefono"]."'><label style='color: #FFFFFF; '>Teléfono</label> </div><br>";
+                        echo"  <tr>";
+                        echo"<td>";
                       
-                   echo" <input type='hidden' name='enviar2' value='$id'>";
-                   echo" <input type='submit' class='btn' name='enviar' value='aceptar'>";
-               echo"</td>";
-            echo"</tr>";
+                        echo" <input type='hidden' name='enviar2' value='$id'>";
+                        echo" <input type='submit' class='btn' name='enviar' value='aceptar'>";
+                        echo"</td>";
+                        echo"</tr>";
                     }
-                            echo "</table>";
-                        echo "</form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/productos.php'>cancelar</a> </div></center>";
-              }
-        }
-        else
-        {
+                    echo "</table>";
+                    echo "</form> ";
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/inicio_emp.php'>cancelar</a> </div></center>";
+            }
+        }else{
     ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Actualizar cliente por id </h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/cliente_actualizar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                <div class="input-container">
-                    <input type="numeric" style="color:#FFFFFF" name="id"><label>ID</label><br>
-                </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <h1>Clientes</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <?php
-                    include('database.php');
-                    $conexion=conectar();
-                    if(!$conexion)
-                    {
-                        die("error de conexion");
-                    }
-                    echo "<hr style='border-color: red'>";
-                    echo "<br>";
-                
-                    $sql ="SELECT * FROM clientes_por_nombre"; //imprimimos todo de vista recicladora 
-                    $result = $conexion->query($sql);
-                    if($result->num_rows > 0)
-                    {
-                        echo "<table>
-                        <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        </tr>";
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo "<tr>";
-                            echo "<td>" . $row['id_cliente'] . "</td>";
-                            echo "<td>" . $row['nombre'] . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
-                ?>
-            </td>
-        </tr>
-    </table>
-                    <?php
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Actualizar cliente por id </h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/cliente_actualizar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="numeric" style="color:#FFFFFF" name="id"><label>ID</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h1>Clientes</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php
+                            include('database.php');
+                            $conexion=conectar();
+                            if(!$conexion){
+                                die("error de conexion");
+                            }
+                            echo "<hr style='border-color: red'>";
+                            echo "<br>";
+                        
+                            $sql ="SELECT * FROM clientes_por_nombre"; //imprimimos todo de vista recicladora 
+                            $result = $conexion->query($sql);
+
+                            if($result->num_rows > 0){
+                                echo "<table>
+                                <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                </tr>";
+                                while($row = $result->fetch_assoc()){
+                                    echo "<tr>";
+                                    echo "<td>" . $row['id_cliente'] . "</td>";
+                                    echo "<td>" . $row['nombre'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                            }
+                        ?>
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
     <!-- Bootstrap files -->

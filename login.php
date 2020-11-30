@@ -9,17 +9,17 @@
 </head>
 <body>
     <div class="box">
-        <form>
+        <form action="val_login.php" method="POST">
             <span class="text-center">login</span>
             <div class="input-container">
-                <input type="text" required=""/>
+                <input type="text" name="usuario" required=""/>
                 <label>ID</label>		
             </div>
             <div class="input-container">		
-                <input type="password" required=""/>
+                <input type="password" name="contraseña" required=""/>
                 <label>Contraseña</label>
             </div>
-            <button type="button" class="btn">submit</button>
+            <button type="submit" class="btn">submit</button>
         </form>	
     </div>
 </body>

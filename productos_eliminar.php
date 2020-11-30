@@ -114,76 +114,71 @@
             
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+
+            if(!$conexion){
                 die("error de conexion");
-            }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            }else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
                 $sql ="SELECT tipo_prod,descrip_prod,precio FROM producto where id_prod=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {
+
+                if($result->num_rows > 0){
                     echo "seguro que desea eliminar este producto ?";
                     echo "<table>";
-                    while($row = $result->fetch_assoc())
-                    {
-                       
+
+                    while($row = $result->fetch_assoc()){
                         echo "<tr> <td>  <b>Tipo</b>: ".$row["tipo_prod"]."
                         <b>Descripcion: </b>". $row["descrip_prod"].
                         "<b> se paga a: $</b>". $row["precio"].
                         "</td> </tr>";
                     }
-                            echo "</table>";
-                            echo "<form name='elim' action='http://localhost/conexion/elim_prod.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
-                            <input type='text' name='filtro'><br>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <input type='hidden' name='enviar2' value='$id'>
-                                            <input type='submit' name='enviar' value='aceptar'>
-                                        </td>
-                                    </tr>
-                                </table>
-                        </form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a href='http://localhost/conexion/productos.php'>cancelar</a>";
-              }
-        }
-        else
-        {
+                    echo "</table>";
+                    echo "<form name='elim' action='http://localhost/conexion/elim_prod.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
+                    <input type='text' name='filtro'><br>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type='hidden' name='enviar2' value='$id'>
+                                    <input type='submit' name='enviar' value='aceptar'>
+                                </td>
+                            </tr>
+                        </table>
+                    </form> ";
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a href='http://localhost/conexion/inicio_emp.php'>cancelar</a>";
+            }
+        }else{
     ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Eliminar producto por ID</h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/productos_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                    <div class="input-container">
-                        <input type="numeric" name="id"><br><label>ID</label><br>
-                    </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-    </table>
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Eliminar producto por ID</h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/productos_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="numeric" name="id"><br><label>ID</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+            </table>
                     <?php
         }
     ?>

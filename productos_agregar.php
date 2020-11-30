@@ -116,12 +116,9 @@
             
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
-            }
-            else
-            {   
+            }else{   
                 $id=$_POST['id'];
                 $tipo_prod=$_POST['tipo_prod'];
                 $descripcion=$_POST['descripcion'];
@@ -132,53 +129,51 @@
                  VALUES($id,'$tipo_prod','$descripcion',$precio,$cantidad,'$estado')";
                 $result = $conexion->query($sql);//Con el query manda los datos y apoyado de la ecnriptacion md5 su contraseña queda encriptada
               // header()          
-              }
-        }
-        else
-        {
+            }
+        }else{
     ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>INGRESE LOS DATOS</h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/productos_agregar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                    <div class="input-container">
-                        <input  type="numeric" name="id"><label>ID</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="tipo_prod"><label>Tipo de producto</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="descripcion"><label>Descripcion</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="number" name="precio"><label>Precio</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="numeric" name="cantidad"><label>Cantidad</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="estado"><label>Estado</label><br>
-                    </div>
-                    <table>
-                        <tr>
-                            <td>
-                                <input class="btn" type="submit" name="enviar" value="Enviar">
-                            </td>
-                            <td>
-                                <input class="btn" type="reset" name="borrar" value="Borrar">
-                            </td>
-                        </tr>
-                    </table>
-                </form> 
-            </td>
-        </tr>
-    </table>
-                    <?php
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>INGRESE LOS DATOS</h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/productos_agregar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input  type="numeric" name="id"><label>ID</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="tipo_prod"><label>Tipo de producto</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="descripcion"><label>Descripcion</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="number" name="precio"><label>Precio</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="numeric" name="cantidad"><label>Cantidad</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="estado"><label>Estado</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
 

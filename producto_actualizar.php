@@ -111,114 +111,105 @@
             
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
             }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
                 $sql ="SELECT tipo_prod,descrip_prod,precio,cantidad,estado FROM producto where id_prod=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {
+
+                if($result->num_rows > 0){
                     echo "<center><div style='width:50%'>";
                     echo "<center><div><h1 style='color:  #FFFFFF;'> ACTUALIZAR PRODUCTO</h1></div></center>";
                     echo "<form name='elim' action='http://localhost/conexion/actu_prod.php' method='POST'>" ;
                     echo "<table>";
-                    while($row = $result->fetch_assoc())
-                    {
-                echo"<div class='input-container' > <input style='color:#FFFFFF' type='text' name='tipo' value='".$row["tipo_prod"]."'> <label style='color: #FFFFFF; '>Tipo de Producto: </label> </div><br>";
-                
-                echo"<div class='input-container'><input style='color:#FFFFFF' type='text' name='desc' value='".$row["descrip_prod"]."'><label style='color:  #FFFFFF;'>Descripción Prod:   </label></div><br>";
-                
-                echo"<div class='input-container'> <input style='color:#FFFFFF' type='number' name='precio' value='".$row["precio"]."'><label style='color:  #FFFFFF;'>Precio:  </label></div><br>";
-                
-               echo "<div class='input-container'> <input style='color:#FFFFFF' type='number' name='cantidad' value='".$row["cantidad"]."'><label style='color:  #FFFFFF;'>Cantidad: </label></div><br>";
-               echo "<div class='input-container'> <input style='color:#FFFFFF' type='text' name='estado' value='".$row["estado"]."'><label style='color:  #FFFFFF;'>Estado del material:  </label></div><br>";
-         
-              echo"  <tr>";
-                echo"<td>";
-                      
-                   echo" <input type='hidden' name='enviar2' value='$id'>";
-                   echo" <input type='submit' class='btn' name='enviar' value='aceptar'>";
-               echo"</td>";
-            echo"</tr>";
-                    }
-                            echo "</table>";
-                        echo "</form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/productos.php'>cancelar</a> </div></center>";
-              }
-        }
-        else
-        {
-    ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Actualizar producto por id </h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/producto_actualizar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                <div class="input-container">
-                    <input type="numeric" style="color:#FFFFFF" name="id"><br><label>ID_producto</label><br>
-                </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-    </table>
-                    <?php
-        }
-    ?>
-        <?php
-//de aqui pa bajo
 
-//conexion da error en pantalla
+                    while($row = $result->fetch_assoc()){
+                        echo"<div class='input-container' > <input style='color:#FFFFFF' type='text' name='tipo' value='".$row["tipo_prod"]."'> <label style='color: #FFFFFF; '>Tipo de Producto: </label> </div><br>";
+                
+                        echo"<div class='input-container'><input style='color:#FFFFFF' type='text' name='desc' value='".$row["descrip_prod"]."'><label style='color:  #FFFFFF;'>Descripción Prod:   </label></div><br>";
+                
+                        echo"<div class='input-container'> <input style='color:#FFFFFF' type='number' name='precio' value='".$row["precio"]."'><label style='color:  #FFFFFF;'>Precio:  </label></div><br>";
+                
+                        echo "<div class='input-container'> <input style='color:#FFFFFF' type='number' name='cantidad' value='".$row["cantidad"]."'><label style='color:  #FFFFFF;'>Cantidad: </label></div><br>";
+                        echo "<div class='input-container'> <input style='color:#FFFFFF' type='text' name='estado' value='".$row["estado"]."'><label style='color:  #FFFFFF;'>Estado del material:  </label></div><br>";
+         
+                        echo"  <tr>";
+                        echo"<td>";
+                      
+                        echo" <input type='hidden' name='enviar2' value='$id'>";
+                        echo" <input type='submit' class='btn' name='enviar' value='aceptar'>";
+                        echo"</td>";
+                        echo"</tr>";
+                    }
+                    echo "</table>";
+                    echo "</form> ";
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/inicio_emp.php'>cancelar</a> </div></center>";
+            }
+        }else{
+    ?>
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Actualizar producto por id </h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center"> 
+                        <form name="Registro" action="http://localhost/conexion/producto_actualizar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="numeric" style="color:#FFFFFF" name="id"><br><label>ID_producto</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+            </table>
+    <?php
+        }
+    ?>
+    <?php
+    //de aqui pa bajo
+
+    //conexion da error en pantalla
         include('database.php');
         $conexion=conectar();
-        if(!$conexion)
-        {
+        if(!$conexion){
             die("error de conexion");
         }
-
         echo "
         <br>
         <br>
         <hr style='border-color: red; width: 50%;'>";
-
         $sql ="select* from cantidad_producto_mes;"; 
         $result = $conexion->query($sql);
-    if($result->num_rows > 0)
-    {
-        echo "<center><bold><h2 style='color: #FFFFFF'> Total de productos adquiridos por mes </h2></bold></center>";
-        echo "<center><table>";
 
-        while($row = $result->fetch_assoc())
-        {
-            echo "
-            <tr> <td>  <b>Id Producto</b>: ".$row["id_producto"]."
-            <b>Cantidad Total por Mes: </b>". $row["sum(lleva.cantidad )"].
-            "</td> </tr>";
-        }
-                echo "</table></center>";
+        if($result->num_rows > 0){
+            echo "<center><bold><h2 style='color: #FFFFFF'> Total de productos adquiridos por mes </h2></bold></center>";
+            echo "<center><table>";
+            while($row = $result->fetch_assoc()){
+                echo "
+                <tr> <td>  <b>Id Producto</b>: ".$row["id_producto"]."
+                <b>Cantidad Total por Mes: </b>". $row["sum(lleva.cantidad )"].
+                "</td> </tr>";
             }
+            echo "</table></center>";
+        }
 
     ?>
 
@@ -232,23 +223,21 @@
         $sql="select* from cliente_producto";
         $result = $conexion->query($sql);
 
-    if($result->num_rows > 0)
-    {
-        echo "<center><bold><h2 style='color: #FFFFFF'> Productos llevados por clientes </h2></bold></center>";
-        echo "<center><table>";
+        if($result->num_rows > 0){
+            echo "<center><bold><h2 style='color: #FFFFFF'> Productos llevados por clientes </h2></bold></center>";
+            echo "<center><table>";
 
-        while($row = $result->fetch_assoc())
-        {
-            echo "
-            <tr> <td>  <b>Id Producto</b>: ".$row["nombre"]."
-            <b>Cantidad Total por Mes: </b>". $row["tipo_prod"].
-            "</td> </tr>";
-        }
-                echo "</table></center>";
+            while($row = $result->fetch_assoc()){
+                echo "
+                <tr> <td>  <b>Id Producto</b>: ".$row["nombre"]."
+                <b>Cantidad Total por Mes: </b>". $row["tipo_prod"].
+                "</td> </tr>";
             }
+            echo "</table></center>";
+        }
     ?>
 
-
+    
 </body>
 </html>
     

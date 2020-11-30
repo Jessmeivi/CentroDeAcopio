@@ -1,8 +1,7 @@
 <?php
     include('database.php');
     $conexion=conectar();
-    if(!$conexion)
-    {
+    if(!$conexion){
         die("error de conexion");
     }
     echo "<hr style='border-color: red'>";
@@ -19,5 +18,5 @@
     colonia='$colonia',num_calle='$num'
     where id_recicladora=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
     $result = $conexion->query($sql);
-    
+    header('Location: actualizar_recicladora.php');
 ?>

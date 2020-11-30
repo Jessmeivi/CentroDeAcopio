@@ -107,124 +107,119 @@
     </nav>
     <?php
         if($_POST)//Recibe los datos del formulario de abajo
-        {
-            
+        { 
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
             }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
                 $sql ="SELECT nombre,direccion,colonia,num_calle FROM recicladora where id_recicladora=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {   
+
+                if($result->num_rows > 0){   
                     echo "<center><div style='width:50%'>";
                     echo "<center><div><h1 style='color:  #FFFFFF; '>ACTUALIZAR DATOS DE RECICLADORA </h1></div></center>";
                     echo "<form name='elim' action='http://localhost/conexion/actu_recicladora.php' method='POST'>" ;
                     echo "<table >";
-                    while($row = $result->fetch_assoc())
-                    {
-                echo"<div class='input-container' >  <input type='text' name='nombre' style='color:#FFFFFF' value='".$row["nombre"]."'> <label style='color: #FFFFFF; '>Nombre: </label> </div><br>";
+
+                    while($row = $result->fetch_assoc()){
+                        echo"<div class='input-container' >  <input type='text' name='nombre' style='color:#FFFFFF' value='".$row["nombre"]."'> <label style='color: #FFFFFF; '>Nombre: </label> </div><br>";
                 
-                echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='direccion' value='".$row["direccion"]."'> <label style='color:  #FFFFFF;'>Direccion:  </label></div><br>";
+                        echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='direccion' value='".$row["direccion"]."'> <label style='color:  #FFFFFF;'>Direccion:  </label></div><br>";
                 
-                echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='colonia' value='".$row["colonia"]."'><label style='color:  #FFFFFF;'>Colonia:  </label></div><br>";
+                        echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='colonia' value='".$row["colonia"]."'><label style='color:  #FFFFFF;'>Colonia:  </label></div><br>";
                 
-               echo "<div class='input-container'><input type='number' style='color:#FFFFFF' name='num_calle' value='".$row["num_calle"]."'><label style='color:  #FFFFFF;'>Numero de calle:  </label></div><br>";
+                        echo "<div class='input-container'><input type='number' style='color:#FFFFFF' name='num_calle' value='".$row["num_calle"]."'><label style='color:  #FFFFFF;'>Numero de calle:  </label></div><br>";
      
-                echo "<div>";
-              //echo"<tr>";
-                echo"<td>";
+                        echo "<div>";
+                        //echo"<tr>";
+                        echo"<td>";
                       
-                   echo" <input type='hidden' name='enviar2' value='$id'>";
-                   echo" <input type='submit' class='btn' name='enviar' value='Aceptar'>";
-               echo"</td>";
-               echo"<br><br>";
-           // echo"</tr>";
+                        echo" <input type='hidden' name='enviar2' value='$id'>";
+                        echo" <input type='submit' class='btn' name='enviar' value='Aceptar'>";
+                        echo"</td>";
+                        echo"<br><br>";
+                        // echo"</tr>";
                     }
-                            echo "</table>";
-                        echo "</form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/productos.php'>cancelar</a> </div></center>";
-              }
-              echo"</div>";
-        }
-        else
-        {
+                    echo "</table>";
+                    echo "</form> ";
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/inicio_emp.php'>cancelar</a> </div></center>";
+            }
+            echo"</div>";
+        }else{
     ?>
-    <table  class="center">
-        <tr>
-            <td align="center">
-                <h1>Actualizar recicladora por id </h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/actualizar_recicladora.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                <div class="input-container">
-                    <input type="numeric" style="color:#FFFFFF" name="id"><br><label>ID_recicladora</label><br>
-                </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <h1>Recicladoras</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <?php
-                    include('database.php');
-                    $conexion=conectar();
-                    if(!$conexion)
-                    {
-                        die("error de conexion");
-                    }
-                    echo "<hr style='border-color: red'>";
-                    echo "<br>";
-                
-                    $sql ="SELECT * FROM recicladora_view"; //imprimimos todo de vista recicladora 
-                    $result = $conexion->query($sql);
-                    if($result->num_rows > 0)
-                    {
-                        echo "<table>
-                        <tr>
-                        <th>Nombre</th>
-                        <th>Dirección</th>
-                        </tr>";
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo "<tr>";
-                            echo "<td>" . $row['nombre'] . "</td>";
-                            echo "<td>" . $row['dirreccion recicladora'] . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
-                ?>
-            </td>
-        </tr>
-    </table>
-                    <?php
+            <table  class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Actualizar recicladora por id </h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/actualizar_recicladora.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="numeric" style="color:#FFFFFF" name="id"><br><label>ID_recicladora</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h1>Recicladoras</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php
+                            include('database.php');
+                            $conexion=conectar();
+                            if(!$conexion){
+                                die("error de conexion");
+                            }else{
+                                echo "<hr style='border-color: red'>";
+                                echo "<br>";
+                        
+                                $sql ="SELECT * FROM recicladora_view"; //imprimimos todo de vista recicladora 
+                                $result = $conexion->query($sql);
+                                if($result->num_rows > 0){
+                                    echo "<table>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Dirección</th>
+                                    </tr>";
+                                    while($row = $result->fetch_assoc()){
+                                        echo "<tr>";
+                                        echo "<td>" . $row['nombre'] . "</td>";
+                                        echo "<td>" . $row['dirreccion recicladora'] . "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</table>";
+                                }else{
+                                    echo"No hay nada";
+                                }    
+                            }
+                        ?>
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
 

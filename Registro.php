@@ -114,12 +114,9 @@
             
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
-            }
-            else
-            {   
+            }else{   
                 $nombre=$_POST['nombre'];
                 $ape_pat=$_POST['ape_pat'];//Recibe los datos del usuario con el formulario
                 $ape_mat=$_POST['ape_mat'];
@@ -132,97 +129,95 @@
                 '$ape_pat','$ape_mat','$estado','$colonia','$calle',$num,$telefono)";
                 $result = $conexion->query($sql);//Con el query manda los datos y apoyado de la ecnriptacion md5 su contraseña queda encriptada
                header("http://localhost/conexion/productos.php") ;        
-              }
-        }
-        else
-        {
+            }
+        }else{
     ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Ingrese los datos</h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/Registro.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                    <div class="input-container">
-                        <input type="text" name="nombre"><br><label>Nombre</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="ape_pat"><br><label>Apellido paterno</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="ape_mat"><br><label>Apellido materno</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="estado"><br><label>Estado</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="colonia"><br><label>Colonia</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="text" name="calle"><br><label>Calle</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="number" name="numero"><br><label>Número de casa</label><br>
-                    </div>
-                    <div class="input-container">
-                        <input type="number" name="telefono"><br><label>Teléfono</label><br>
-                    </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <h1>Clientes</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <?php
-                    include('database.php');
-                    $conexion=conectar();
-                    if(!$conexion)
-                    {
-                        die("error de conexion");
-                    }
-                    echo "<hr style='border-color: red'>";
-                    echo "<br>";
-                
-                    $sql ="SELECT * FROM clientes_por_nombre"; //imprimimos todo de vista recicladora 
-                    $result = $conexion->query($sql);
-                    if($result->num_rows > 0)
-                    {
-                        echo "<table>
-                        <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        </tr>";
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo "<tr>";
-                            echo "<td>" . $row['id_cliente'] . "</td>";
-                            echo "<td>" . $row['nombre'] . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
-                ?>
-            </td>
-        </tr>
-    </table>
-                    <?php
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Ingrese los datos</h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/Registro.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="text" name="nombre"><br><label>Nombre</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="ape_pat"><br><label>Apellido paterno</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="ape_mat"><br><label>Apellido materno</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="estado"><br><label>Estado</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="colonia"><br><label>Colonia</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" name="calle"><br><label>Calle</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="number" name="numero"><br><label>Número de casa</label><br>
+                            </div>
+                            <div class="input-container">
+                                <input type="number" name="telefono"><br><label>Teléfono</label><br>
+                            </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <input class="btn" type="submit" name="enviar" value="Enviar">
+                                </td>
+                                <td>
+                                    <input class="btn" type="reset" name="borrar" value="Borrar">
+                                </td>
+                            </tr>
+                        </table>
+                </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h1>Clientes</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php
+                            include('database.php');
+                            $conexion=conectar();
+                            if(!$conexion)
+                            {
+                                die("error de conexion");
+                            }
+                            echo "<hr style='border-color: red'>";
+                            echo "<br>";
+                        
+                            $sql ="SELECT * FROM clientes_por_nombre"; //imprimimos todo de vista recicladora 
+                            $result = $conexion->query($sql);
+                            if($result->num_rows > 0)
+                            {
+                                echo "<table>
+                                <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                </tr>";
+                                while($row = $result->fetch_assoc())
+                                {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['id_cliente'] . "</td>";
+                                    echo "<td>" . $row['nombre'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                            }
+                        ?>
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
 

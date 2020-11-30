@@ -107,122 +107,117 @@
     </nav>
     <?php
         if($_POST)//Recibe los datos del formulario de abajo
-        {
-            
+        {   
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
             }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
-                $sql ="SELECT nom,ape_pat,ape_mat,salario FROM empleado where id_empleado=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
+                $sql ="SELECT nom,ape_pat,ape_mat,salario,passwd FROM empleado where id_empleado=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {
+
+                if($result->num_rows > 0){
                     echo "<center><div style='width:50%'>";
                     echo "<center><div><h1 style='color:  #FFFFFF;'>ACTUALIZAR EMPLEADO</h1></div></center>";
                     echo "<form name='elim' action='http://localhost/conexion/actu_empleado.php' method='POST'>" ;
                     echo "<table>";
-                    while($row = $result->fetch_assoc())
-                    {
-                echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='nombre' value='".$row["nom"]."'><label style='color:  #FFFFFF;'>Nombre: </label></div><br>";
+
+                    while($row = $result->fetch_assoc()){
+                        echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='nom' value='".$row["nom"]."'><label style='color:  #FFFFFF;'>Nombre: </label></div><br>";
                 
-                echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='ape_pat' value='".$row["ape_pat"]."'><label style='color:  #FFFFFF;'>Apellido Paterno: </label></div><br>";
+                        echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='ape_pat' value='".$row["ape_pat"]."'><label style='color:  #FFFFFF;'>Apellido Paterno: </label></div><br>";
                 
-                echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='ape_mat' value='".$row["ape_mat"]."'><label style='color:  #FFFFFF;'>Apellido Materno:  </label></div><br>";
+                        echo"<div class='input-container'><input type='text' style='color:#FFFFFF' name='ape_mat' value='".$row["ape_mat"]."'><label style='color:  #FFFFFF;'>Apellido Materno:  </label></div><br>";
                 
-               echo "<div class='input-container'> <input type='number' style='color:#FFFFFF' name='salario' value='".$row["salario"]."'><label style='color:  #FFFFFF;'>Salario:</label></div><br>";
-     
-         
-              echo"  <tr>";
-                echo"<td>";
+                        echo "<div class='input-container'> <input type='number' style='color:#FFFFFF' name='salario' value='".$row["salario"]."'><label style='color:  #FFFFFF;'>Salario:</label></div><br>";
+                        
+                        echo "<div class='input-container'> <input type='text' style='color:#FFFFFF' name='passwd' value='".$row["passwd"]."'><label style='color:  #FFFFFF;'>Contraseña:</label></div><br>";
+
+                        echo"  <tr>";
+                        echo"<td>";
                       
-                   echo" <input type='hidden' name='enviar2' value='$id'>";
-                   echo" <input type='submit' class='btn'  name='enviar' value='aceptar'>";
-               echo"</td>";
-            echo"</tr>";
+                        echo" <input type='hidden' name='enviar2' value='$id'>";
+                        echo" <input type='submit' class='btn'  name='enviar' value='aceptar'>";
+                        echo"</td>";
+                        echo"</tr>";
                     }
-                            echo "</table>";
-                        echo "</form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/productos.php'>cancelar</a></div></center>";
-              }
-        }
-        else
-        {
-    ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Actualizar empleado por id </h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/actualizar_empleado.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                <div class="input-container">
-                    <input type="numeric" style="color:#FFFFFF" name="id"><br><label>ID_empleado</label><br>
-                </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <h1>Empleados</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <?php
-                    include('database.php');
-                    $conexion=conectar();
-                    if(!$conexion)
-                    {
-                        die("error de conexion");
-                    }
-                    echo "<hr style='border-color: red'>";
-                    echo "<br>";
-                
-                    $sql ="SELECT * FROM empleado_por_nombre"; //imprimimos todo de vista recicladora 
-                    $result = $conexion->query($sql);
-                    if($result->num_rows > 0)
-                    {
-                        echo "<table>
-                        <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        </tr>";
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo "<tr>";
-                            echo "<td>" . $row['id_empleado'] . "</td>";
-                            echo "<td>" . $row['nombre'] . "</td>";
-                            echo "</tr>";
-                        }
                         echo "</table>";
-                    }
-                ?>
-            </td>
-        </tr>
-    </table>
-                    <?php
+                        echo "</form> ";
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a class='btn' style='margin:10px;' href='http://localhost/conexion/inicio_emp.php'>cancelar</a></div></center>";
+            }
+        }else{
+    ?>
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Actualizar empleado por id </h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/actualizar_empleado.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="numeric" style="color:#FFFFFF" name="id"><br><label>ID_empleado</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h1>Empleados</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php
+                            include('database.php');
+                            $conexion=conectar();
+                            if(!$conexion){
+                                die("error de conexion");
+                            }
+                            echo "<hr style='border-color: red'>";
+                            echo "<br>";
+                        
+                            $sql ="SELECT * FROM empleado_por_nombre"; //imprimimos todo de vista recicladora 
+                            $result = $conexion->query($sql);
+                            if($result->num_rows > 0){
+                                echo "<table> 
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                </tr>";
+                                while($row = $result->fetch_assoc()){
+                                    echo "<tr>";
+                                    echo "<td>" . $row['id_empleado'] . "</td>";
+                                    echo "<td>" . $row['nombre'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                            }else{
+                                echo"No hay nada";
+                            }    
+                        ?>
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
 

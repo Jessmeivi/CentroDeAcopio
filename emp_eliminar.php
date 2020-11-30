@@ -111,118 +111,110 @@
     <?php
         if($_POST)//Recibe los datos del formulario de abajo
         {
-            
             include('database.php');
             $conexion=conectar();
-            if(!$conexion)
-            {
+            if(!$conexion){
                 die("error de conexion");
             }
-            else
-            {   
-            $id=$_POST['id'];
-             echo "<hr style='border-color: red'>";
+            else{   
+                $id=$_POST['id'];
+                echo "<hr style='border-color: red'>";
                 echo "<br>";
                 $sql ="SELECT nom,ape_pat,ape_mat FROM empleado where id_empleado=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
                 $result = $conexion->query($sql);
-                if($result->num_rows > 0)
-                {
+
+                if($result->num_rows > 0){
                     echo "seguro que desea eliminar este empleado ?";
                     echo "<table>";
-                    while($row = $result->fetch_assoc())
-                    {
-                       
+
+                    while($row = $result->fetch_assoc()){  
                         echo "<tr> <td>  <b>nombre</b>: ".$row["nom"]."
                         <b>apellido paterno: </b>". $row["ape_pat"].
                         "<b>apellido: $</b>". $row["ape_mat"].
                         "</td> </tr>";
                     }
-                            echo "</table>";
-                            echo "<form name='elim' action='http://localhost/conexion/elim_prod.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
+                    echo "</table>";
+                    echo "<form name='elim' action='http://localhost/conexion/elim_prod.php' method='POST'> <!--Igualmente el formulario se envia a la misma pagina--> 
                             <input type='text' name='filtro'><br>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <input type='hidden' name='enviar2' value='$id'>
-                                            <input type='submit' name='enviar' value='aceptar'>
-                                        </td>
-                                    </tr>
-                                </table>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type='hidden' name='enviar2' value='$id'>
+                                        <input type='submit' name='enviar' value='aceptar'>
+                                    </td>
+                                </tr>
+                            </table>
                         </form> ";
-                        }else{
-                            echo"pusss no hay nadieeee";
-                        }    
-                        echo "<a href='http://localhost/conexion/productos.php'>cancelar</a>";
-              }
-        }
-        else
-        {
+                }else{
+                    echo"No hay nada";
+                }    
+                echo "<a href='http://localhost/conexion/inicio_emp.php'>cancelar</a>";
+            }
+        }else{
     ?>
-    <table class="center">
-        <tr>
-            <td align="center">
-                <h1>Eliminar empleado por id </h1> <!--Formulario para crear al nuevo usuario--> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <form name="Registro" action="http://localhost/conexion/emp_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
-                <div class="input-container">
-                <input type="numeric" name="id"><br><label>ID</label><br>
-                    </div>
-                <table>
-                    <tr>
-                        <td>
-                            <input class="btn" type="submit" name="enviar" value="Enviar">
-                        </td>
-                        <td>
-                            <input class="btn" type="reset" name="borrar" value="Borrar">
-                        </td>
-                    </tr>
-                </table>
-        </form> 
-            </td>
-        </tr>
-        <tr>
-            <td align="center">
-                <h1>Empleados</h1>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <?php
-                    include('database.php');
-                    $conexion=conectar();
-                    if(!$conexion)
-                    {
-                        die("error de conexion");
-                    }
-                    echo "<hr style='border-color: red'>";
-                    echo "<br>";
-                
-                    $sql ="SELECT * FROM empleado_por_nombre"; //imprimimos todo de vista recicladora 
-                    $result = $conexion->query($sql);
-                    if($result->num_rows > 0)
-                    {
-                        echo "<table>
-                        <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        </tr>";
-                        while($row = $result->fetch_assoc())
-                        {
-                            echo "<tr>";
-                            echo "<td>" . $row['id_empleado'] . "</td>";
-                            echo "<td>" . $row['nombre'] . "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
-                ?>
-            </td>
-        </tr>
-    </table>
-                    <?php
+            <table class="center">
+                <tr>
+                    <td align="center">
+                        <h1>Eliminar empleado por id </h1> <!--Formulario para crear al nuevo usuario--> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <form name="Registro" action="http://localhost/conexion/emp_eliminar.php" method="POST"> <!--Igualmente el formulario se envia a la misma pagina--> 
+                            <div class="input-container">
+                                <input type="numeric" name="id"><br><label>ID</label><br>
+                            </div>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <h1>Empleados</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <?php
+                            include('database.php');
+                            $conexion=conectar();
+                            if(!$conexion){
+                                die("error de conexion");
+                            }
+                            echo "<hr style='border-color: red'>";
+                            echo "<br>";
+                        
+                            $sql ="SELECT * FROM empleado_por_nombre"; //imprimimos todo de vista recicladora 
+                            $result = $conexion->query($sql);
+
+                            if($result->num_rows > 0){
+                                echo "<table>
+                                <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                </tr>";
+                                while($row = $result->fetch_assoc()){
+                                    echo "<tr>";
+                                    echo "<td>" . $row['id_empleado'] . "</td>";
+                                    echo "<td>" . $row['nombre'] . "</td>";
+                                    echo "</tr>";
+                                }
+                                echo "</table>";
+                            }
+                        ?>
+                    </td>
+                </tr>
+            </table>
+    <?php
         }
     ?>
     <!-- Bootstrap files -->

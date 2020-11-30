@@ -59,7 +59,7 @@
         <li><a href="index.php">Inicio</a></li>
         <li><a href="productos.php">Productos</a></li>
         <li><a href="info.php">Encuentranos</a></li>
-        <li><a href="inicio_emp.php">Login</a></li>
+        <li><a href="login.php">Login</a></li>
     </ul>
     
     <h2>Hagamos un mundo mejor...</h2>
