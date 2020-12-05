@@ -56,6 +56,12 @@
                     <li class="menu-item"><a href="emp_eliminar.php"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
                 </ol>
             </li>
+            <li class="menu-item"><a href="#">Extra</a>
+                <ol class="sub-menu">
+                    <li class="menu-item"><a href="la_principal.php"><i class="fas fa-plus-circle"></i> Isaías</a></li>
+                    <li class="menu-item"><a href="la_principal2.php"><i class="far fa-edit"></i></i> Alex</a></li>
+                </ol>
+            </li>
         </ol>
     </nav>
 

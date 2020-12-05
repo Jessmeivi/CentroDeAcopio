@@ -52,10 +52,10 @@ a:before{
 }
  
 nav{
-  max-width: 360px;
+  max-width: 500px;
   /*max-height: 480px;*/
-  display: flex;
-  align-items: flex-end;
+  /*display: flex;*/
+  /*align-items: flex-end;*/
   animation: bounceIn 300ms cubic-bezier(0.175, 0.885, 0.320, 1.275) 1 forwards;
   animation-delay: 500ms;
   transform-style: preserve-3d;
@@ -178,6 +178,10 @@ nav > ol > .menu-item:nth-of-type(5) > a:before{
   content: '👷🏽‍♂'; 
 }
 
+nav > ol > .menu-item:nth-of-type(6) > a:before{
+  content: '🗂️'; 
+}
+
 nav > ol > .menu-item:nth-of-type(3) ol li a:before,
 nav > ol > .menu-item:nth-of-type(4) ol li a:before{
   display: inline-flex;
@@ -186,10 +190,8 @@ nav > ol > .menu-item:nth-of-type(4) ol li a:before{
   margin-right: 5px;
   transition: transform 300ms ease-out;
 }
-
+/*
 nav > ol > li{
   width: 20%;
   margin-right: -4px;
-}
-
-
+}*/

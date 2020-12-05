@@ -8,11 +8,10 @@
 }
 
 body{
-  display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  margin: 0;
+  /*height: 500vh;*/
+  margin-top: 150px;
   padding: 0;
   font-family: 'Exo 2';
   background: #131313;
@@ -42,8 +41,8 @@ a:before{
 
 .menu-item:last-of-type a{
   border-radius: 0 21px 13px 0;
-}
-*/
+}*/
+
 .sub-menu .menu-item:first-of-type a{
   border-radius: 13px 21px 0 0;
 }
@@ -55,12 +54,14 @@ a:before{
 nav{
   /*max-width: 360px;*/
   /*max-height: 480px;*/
-  /*display: flex;*/
-  /*align-items: flex-end;*/
+  /*display: flex;
+  align-items: flex-end;*/
   animation: bounceIn 300ms cubic-bezier(0.175, 0.885, 0.320, 1.275) 1 forwards;
   animation-delay: 500ms;
   transform-style: preserve-3d;
   opacity: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @keyframes bounceIn{
@@ -176,10 +177,10 @@ nav > ol > .menu-item:nth-of-type(4) > a:before{
 nav > ol > .menu-item:nth-of-type(5) > a:before{
   content: '👷🏽‍♂'; 
 }
+
 nav > ol > .menu-item:nth-of-type(6) > a:before{
   content: '👷🏽‍♂'; 
 }
-
 nav > ol > .menu-item:nth-of-type(3) ol li a:before,
 nav > ol > .menu-item:nth-of-type(4) ol li a:before{
   display: inline-flex;
@@ -192,6 +193,6 @@ nav > ol > .menu-item:nth-of-type(4) ol li a:before{
 nav > ol > li{
   width: 20%;
   margin-right: -4px;
-}*/
-
+}
+*/
 
