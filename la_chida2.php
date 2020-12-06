@@ -47,7 +47,7 @@ $trun="truncate ids";
 $cate=$conexion->query($trun);
 
     }
-    header('Location: la_principal2.php');
+    
 ?>
 
 

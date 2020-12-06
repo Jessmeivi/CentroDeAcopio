@@ -66,6 +66,7 @@
         }
         table{
             color: #ffffff;
+            font-size:18px;
         }
     </style>
 </head>

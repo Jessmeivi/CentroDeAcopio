@@ -47,7 +47,7 @@
             width:100%;
             padding:8px 0 5px 0;
             font-size:16px;
-            color:#00000;
+            color:#ffffff;
         }
         .input-container input:focus{ 
             border:none;	
@@ -66,6 +66,7 @@
         }
         table{
             color: #ffffff;
+            font-size:18px;
         }
     </style>
 </head>
@@ -281,42 +282,49 @@
                                 <input type="text" name="cantidad"><br><label>Cantidad:</label><br>
                             </div>
                         
-                        <table>
-                            <tr>
-                                <td>
-                                    <input type="hidden" name="total"  value=0>
-                                    <input  class="btn" type="submit" name="enviar" value="Enviar">
-                                </td>
-                                <td>
-                                    <input  class="btn" type="reset" name="borrar" value="Borrar">
-                                </td>
-                            </tr>
-                        </table>
-                </form> 
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="hidden" name="total"  value=0>
+                                        <input  class="btn" type="submit" name="enviar" value="Enviar">
+                                    </td>
+                                    <td>
+                                        <input  class="btn" type="reset" name="borrar" value="Borrar">
+                                    </td>
+                                </tr>
+                            </table>
+                        </form> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <?php
+                        include('database.php');
+                        $conexion=conectar();
+                        if(!$conexion){
+                            die("error de conexion");
+                        }else{   
+                            $sql ="SELECT id_prod,tipo_prod,descrip_prod,precio FROM producto"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
+                            $result = $conexion->query($sql);
+                            if($result->num_rows > 0){
+                                echo "<table>";
+                                while($row = $result->fetch_assoc()){
+                                    echo "<tr> <td>  <b>id</b>: ".$row["id_prod"]."
+                                    <b>Tipo</b>: ".$row["tipo_prod"]."
+                                    <b>Descripcion: </b>". $row["descrip_prod"].
+                                    "<b> se paga a: $</b>". $row["precio"].
+                                    "</td> </tr>";
+                                }
+                                echo "</table>";
+                            }
+                        }
+                    ?>
                     </td>
                 </tr>
             </table>
     <?php
-            include('database.php');
-            $conexion=conectar();
-            if(!$conexion){
-                die("error de conexion");
-            }else{   
-                $sql ="SELECT id_prod,tipo_prod,descrip_prod,precio FROM producto"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
-                $result = $conexion->query($sql);
-                if($result->num_rows > 0){
-                    echo "<table>";
-                    while($row = $result->fetch_assoc()){
-                        echo "<tr> <td>  <b>id</b>: ".$row["id_prod"]."
-                        <b>Tipo</b>: ".$row["tipo_prod"]."
-                        <b>Descripcion: </b>". $row["descrip_prod"].
-                        "<b> se paga a: $</b>". $row["precio"].
-                        "</td> </tr>";
-                    }
-                    echo "</table>";
-                }
-            }
         }
     ?>
+    
 </body>
 </html>

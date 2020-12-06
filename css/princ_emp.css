@@ -180,6 +180,10 @@ nav > ol > .menu-item:nth-of-type(6) > a:before{
   content: '👷🏽‍♂'; 
 }
 
+nav > ol > .menu-item:nth-of-type(6) > a:before{
+  content: '🗂️'; 
+}
+
 nav > ol > .menu-item:nth-of-type(3) ol li a:before,
 nav > ol > .menu-item:nth-of-type(4) ol li a:before{
   display: inline-flex;

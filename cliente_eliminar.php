@@ -66,6 +66,7 @@
         }
         table{
             color: #ffffff;
+            font-size:18px;
         }
         div input{
             color: #FFFFFF;
