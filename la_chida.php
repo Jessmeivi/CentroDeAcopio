@@ -48,7 +48,7 @@ $trun="truncate ids";
 $cate=$conexion->query($trun);
 
     }
-    
+    header('Location: inicio_emp.php');
 ?>
 
 

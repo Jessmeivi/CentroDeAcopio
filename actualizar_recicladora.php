@@ -215,6 +215,7 @@
                                     </tr>";
                                     while($row = $result->fetch_assoc()){
                                         echo "<tr>";
+                                        //echo "<td>" . $row['id recicladora'] ."</td>";
                                         echo "<td>" . $row['nombre'] . "</td>";
                                         echo "<td>" . $row['dirreccion recicladora'] . "</td>";
                                         echo "</tr>";

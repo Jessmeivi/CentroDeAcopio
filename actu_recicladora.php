@@ -11,12 +11,14 @@
     $direccion=$_POST['direccion'];//Recibe los datos del usuario con el formulario
     $colonia=$_POST['colonia'];
     $num=$_POST['num_calle'];
-    
+    echo"$id,  $nombre, $direccion";
    
     $sql ="UPDATE recicladora 
     set nombre='$nombre',direccion='$direccion',
-    colonia='$colonia',num_calle='$num'
+    colonia='$colonia',num_calle=$num
     where id_recicladora=$id"; //Con esta consulta filtra todas las preguntas que contengan esa palabra clave
     $result = $conexion->query($sql);
-    header('Location: actualizar_recicladora.php');
+    
+    //header('Location: actualizar_recicladora.php');
+  
 ?>

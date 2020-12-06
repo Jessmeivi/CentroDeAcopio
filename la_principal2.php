@@ -326,7 +326,7 @@
                             "<b> se paga a: $</b>". $row["precio"].
                             "</td> </tr>";
                         }
-                        echo "</table>";
+                        echo "</table><br>";
                     }
                 }
             ?>
